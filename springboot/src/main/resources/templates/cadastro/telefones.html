@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro</title>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+		<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      
+	  <script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
+	  <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+      <style type="text/css">
+      table.striped>tbody>tr:nth-child(odd){
+     	background-color: rgba(158, 154, 154, 0.5);
+      }
+      
+      form input[type=submit]{
+      color: white;
+      }
+      
+      p{
+      font-weight: bolder;
+      }
+      </style>
+      
+      <script type="text/javascript">
+      	function validarCampo(){
+      	
+      	numero = document.getElementById('numero').value;
+      	tipo = document.getElementById('tipo').value;
+      	if(numero === ''){
+      		alert("Campo número está vázio")
+      		return false
+      		}else if(tipo === ''){
+      			alert("campo tipo está vazio")
+      			return false
+      		}
+      		return true;
+      	}
+      </script>
+</head>
+<body style="padding: 30px;">
+		  	<div>
+		<a href="/"><span class="material-icons">home</span></a>
+		<a href="/logout" style="text-align: right;"><span class="material-icons">logout</span></a>
+	</div>
+	
+	<br/>
+	<br/>
+	<br/>
+	<table class="striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nome</th>
+				<th>Sobrenome</th>
+			</tr>
+		</thead>
+		<tr th:each="p : ${pessoaobj}">
+			<td th:text = ${p.id}/>
+			<td th:text = ${p.nome}/>
+			<td th:text = ${p.sobrenome}/>
+		</tr>
+	</table>
+	<h5>Telefones</h5>
+	
+	<div class="row">
+		<form th:action="@{/addfonepessoa/{pessoaid}(pessoaid=${pessoaobj.id})}"  th:object="${telefoneobj}" 
+		method="post" class="col s12" onsubmit="return validarCampo() ? true : false;">
+		   <div class="row">
+		   
+		   
+		   <br/>
+		   		<div th:each = "m : ${msg}">
+		   			<span th:text = ${m}></span>
+		   		</div>
+		   <br/>
+		   		
+		   		<div class="input-field col s6">
+		   			<label class="active" for="numero">Número:</label>
+		   			<input type="text" id="numero" name="numero" 
+		   				class="validate" th:field"*{telefones}"/>
+		   		</div>
+		   	
+		   	<div class="input-field col s6">
+		   		<label class="active" for="tipo">Tipo:</label>
+		   		<input id="tipo" type="text" name="tipo" class="validate">
+		   	</div>
+		   	<!--
+		   			<div class="input-field col s6">
+		   		<label for="tipo" class="active">Tipo</label>
+		   			<select class="browser-default" th:field="*{tipo}">
+		   			<option value="" disabled selected>[--SELECIONE--]</option>
+		   				<option value="CELULAR" th:text="Celular"/>
+		   				<option value="TELEFONE" th:text="Telefone"/>
+		   			</select>
+		   		</div>
+			!-->
+
+		   		<input type="submit" value="Adicionar" class="waves-effect waves-light btn">
+		   </div> 
+		</form>
+		
+		<table class="striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Tipo</th>
+					<th>Número</th>
+					<th>Editar</th>
+					<th>Excluir</th>
+				</tr>
+			</thead>
+		
+			<tr  th:each="telefone : ${telefones}">
+				<td th:text="${telefone.id}"/>
+				<td th:text="${telefone.tipo}"/>
+				<td th:text="${telefone.numero}"/>
+				<td><a th:href="@{/editartelefone/{telefoneid}(telefoneid=${telefone.id})}">Editar</a></td>
+				<td><a th:href="@{/removertelefone/{telefoneid}(telefoneid=${telefone.id})}">Remover</a></td>
+			</tr>
+		</table>
+	</div>
+	
+		<script>
+    $("input[id*='numero']").inputmask({
+		mask:['(99) 9 9999-9999'],
+		keepStatic: true
+		});
+		</script>
+</body>
+</html>
