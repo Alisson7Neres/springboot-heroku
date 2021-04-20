@@ -37,6 +37,10 @@
       body{
 	background-color: #a5d6a7 green lighten-3;
 	}
+	table th, table td{
+		border: 1px solid grey;
+	}
+
       </style>
 </head>
 <body style="padding: 30px;">
@@ -218,7 +222,7 @@ person_search
 		<th>Excluir</th>
 	</tr>
 	</thead>
-		<tr th:each = "pessoa : ${pessoas}" sec:authorize="hasRole('ADMIN')">
+		<tr th:each = "pessoa : ${pessoas.content}" sec:authorize="hasRole('ADMIN')">
 			<td th:text = "${pessoa.id}"></td>
 			<td><a th:href = "@{/telefones/{idpessoa}(idpessoa=${pessoa.id})}">
 			<span th:text = "${pessoa.nome}"></span></a></td>
@@ -230,6 +234,22 @@ person_search
 		</tr>
 	</table>
 	</fieldset>
+	
+	<div class="row" style="margin-top: 30px;">
+	<center>
+	
+		<span th:if="${pessoas.hasPrevious()}">
+			<a href="@{/pessoaspag(page=${pessoas.number-1}, size = ${pessoas.size})}">Anterior</a>
+		</span>
+	
+		<th:block th:each="i : ${#numbers.sequence(0 , pessoas.totalPages - 1)}">
+			<a th:href="@{/pessoaspag(page=${i}, size=${pessoas.size})}">[[ ${i} + 1 ]]</a>
+		</th:block>
+		
+		<span th:if="${pessoas.hasNext()}">
+			<a href="@{/pessoaspag(page=${pessoas.number+1}, size = ${pessoas.size})}">Próximo</a>
+		</span>
+	</center>
 		</div>
 	
 	 <!-- Adicionando Javascript -->
