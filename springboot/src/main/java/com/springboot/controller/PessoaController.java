@@ -140,18 +140,20 @@ public class PessoaController {
 	
 	@PostMapping("**/consultarpessoa")
 	public ModelAndView consultar(@RequestParam("nomepesquisa") String nomepesquisa,
-			@RequestParam("peqsexo") String peqsexo){
+			@RequestParam("peqsexo") String peqsexo,
+					@PageableDefault(size = 5, sort = {"nome"}) Pageable pageable) {
 		
-		List<Pessoa> pessoas = new ArrayList<Pessoa>();
+		Page<Pessoa> pessoas = null;
 		
 		if(peqsexo != null && !peqsexo.isEmpty()) {
-			pessoas = pessoaRepository.findPessoaBySexo(nomepesquisa, peqsexo);
+			pessoas = pessoaRepository.findPessoaBySexoPage(nomepesquisa, peqsexo, pageable);
 		}else {
-			pessoas = pessoaRepository.findPessoaByName(nomepesquisa);
+			pessoas = pessoaRepository.findPessoaByNamePage(nomepesquisa, pageable);
 		}
 		ModelAndView andView = new ModelAndView("/cadastro/cadastropessoa");
 		andView.addObject("pessoas", pessoas);
 		andView.addObject("pessoaobj", new Pessoa());
+		andView.addObject("nomepesquisa", nomepesquisa);
 		return andView;
 	}
 	
@@ -289,10 +291,11 @@ public class PessoaController {
 		
 	@GetMapping("/pessoaspag")
 	public ModelAndView carregaPessoaPorPaginacao(@PageableDefault(size = 5)
-	Pageable pageable, ModelAndView andView) {
-		Page<Pessoa> pagePessoa = pessoaRepository.findAll(pageable);
+	Pageable pageable, ModelAndView andView, @RequestParam("nomepesquisa") String nomepesquisa) {
+		Page<Pessoa> pagePessoa = pessoaRepository.findPessoaByNamePage(nomepesquisa, pageable);
 		andView.addObject("pessoas", pagePessoa);
 		andView.addObject("pessoaobj", new Pessoa());
+		andView.addObject("nomepesquisa", nomepesquisa);
 		andView.setViewName("cadastro/cadastropessoa");
 		
 		return andView;
