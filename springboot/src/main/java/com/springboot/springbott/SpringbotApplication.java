@@ -23,11 +23,12 @@ public class SpringbotApplication implements WebMvcConfigurer{
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbotApplication.class, args);
 		
-		
+		/*
 		//Criptografa senha
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String result = encoder.encode("36360");
 		System.out.println(result);
+		*/
 	
 	}
 	
