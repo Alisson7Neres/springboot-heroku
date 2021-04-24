@@ -29,7 +29,6 @@ public class SpringbotApplication implements WebMvcConfigurer{
 		String result = encoder.encode("36360");
 		System.out.println(result);
 		*/
-	
 	}
 	
 	@Override
