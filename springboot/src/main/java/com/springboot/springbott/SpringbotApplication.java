@@ -28,6 +28,7 @@ public class SpringbotApplication implements WebMvcConfigurer{
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String result = encoder.encode("36360");
 		System.out.println(result);
+		System.out.println("$2a$10$BYsHLqp/s5Uig9FLK77LD.xDxIFGzMd3HPdBYKb5xlC8TLxe2tfHW");
 		*/
 	}
 	
