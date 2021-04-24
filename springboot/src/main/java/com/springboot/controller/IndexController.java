@@ -15,4 +15,9 @@ public class IndexController {
 	public String login() {
 		return "login";
 	}
+	
+	@RequestMapping("/cadastropessoa")
+	public String cadastropessoa() {
+		return "cadastropessoa";
+	}
 }

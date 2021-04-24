@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.Ordered;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -22,12 +23,12 @@ public class SpringbotApplication implements WebMvcConfigurer{
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbotApplication.class, args);
 		
-		/*
+		
 		//Criptografa senha
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String result = encoder.encode("36360");
 		System.out.println(result);
-	*/
+	
 	}
 	
 	@Override
