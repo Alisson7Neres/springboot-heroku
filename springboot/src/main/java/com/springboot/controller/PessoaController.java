@@ -116,7 +116,7 @@ public class PessoaController {
 		return andView;
 	}
 	
-	@GetMapping("**/editarpessoa/{idpessoa}")
+	@GetMapping("/editarpessoa/{idpessoa}")
 	public ModelAndView editar(@PathVariable("idpessoa") Long idpessoa){
 		Optional<Pessoa> pessoaOptional = pessoaRepository.findById(idpessoa);
 		
@@ -128,7 +128,7 @@ public class PessoaController {
 		
 	}
 	
-	@GetMapping("**/removerpessoa/{idpessoa}")
+	@GetMapping("/removerpessoa/{idpessoa}")
 	public ModelAndView remover(@PathVariable("idpessoa") Long idpessoa){
 		pessoaRepository.deleteById(idpessoa);
 		
