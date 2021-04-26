@@ -118,10 +118,11 @@ public class PessoaController {
 	
 	@GetMapping("**/editarpessoa/{idpessoa}")
 	public ModelAndView editar(@PathVariable("idpessoa") Long idpessoa){
+		Optional<Pessoa> pessoaOptional = pessoaRepository.findById(idpessoa);
 		
 		ModelAndView modelAndView = new ModelAndView("cadastro/cadastropessoa");
-		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
-		modelAndView.addObject("pessoaobj", pessoa.get());
+		Pessoa pessoa = pessoaOptional.get();
+		modelAndView.addObject("pessoaobj", pessoa);
 		modelAndView.addObject("profissoes", profissaoRepository.findAll());
 		return modelAndView;
 		
