@@ -116,7 +116,7 @@ public class PessoaController {
 		return andView;
 	}
 	
-	@GetMapping("/editarpessoa/{idpessoa}")
+	@GetMapping("**/editarpessoa/{idpessoa}")
 	public ModelAndView editar(@PathVariable("idpessoa") Long idpessoa){
 		
 		ModelAndView modelAndView = new ModelAndView("cadastro/cadastropessoa");
@@ -127,7 +127,7 @@ public class PessoaController {
 		
 	}
 	
-	@GetMapping("/removerpessoa/{idpessoa}")
+	@GetMapping("**/removerpessoa/{idpessoa}")
 	public ModelAndView remover(@PathVariable("idpessoa") Long idpessoa){
 		pessoaRepository.deleteById(idpessoa);
 		
@@ -157,7 +157,7 @@ public class PessoaController {
 		return andView;
 	}
 	
-	@GetMapping("/telefones/{idpessoa}")
+	@GetMapping("**/telefones/{idpessoa}")
 	public ModelAndView telefones(@PathVariable("idpessoa") Long idpessoa){
 		
 		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
@@ -264,7 +264,7 @@ public class PessoaController {
 	}
 	
 	
-	@GetMapping("/editartelefone/{telefoneid}")
+	@GetMapping("**/editartelefone/{telefoneid}")
 	public ModelAndView editarTelefone(@PathVariable("telefoneid") Long idpessoa ) {
 		
 		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
@@ -276,7 +276,7 @@ public class PessoaController {
 	}
 	
 	
-	@GetMapping("/removertelefone/{telefoneid}")
+	@GetMapping("**/removertelefone/{telefoneid}")
 	public ModelAndView deletarTelefone(@PathVariable("telefoneid") Long telefoneid){
 		
 		Pessoa pessoa = telefoneRepository.findById(telefoneid).get().getPessoa();
