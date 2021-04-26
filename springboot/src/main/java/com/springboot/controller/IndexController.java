@@ -16,9 +16,4 @@ public class IndexController {
 		return "login";
 	}
 	
-	@RequestMapping("**/cadastropessoa")
-	public String cadastropessoa() {
-		return "cadastropessoa";
-	}
-	
 }
