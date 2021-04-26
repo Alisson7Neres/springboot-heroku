@@ -50,9 +50,9 @@ public class PessoaController {
 	@Autowired
 	private ProfissaoRepository profissaoRepository;
 	
-	@RequestMapping(method=RequestMethod.GET, value ="/cadastropessoa")
+	@RequestMapping(method=RequestMethod.GET, value ="**/cadastropessoa")
 	public ModelAndView inicio() {
-		ModelAndView modelAndView = new ModelAndView("/cadastro/cadastropessoa");
+		ModelAndView modelAndView = new ModelAndView("cadastro/cadastropessoa");
 		modelAndView.addObject("pessoas", pessoaRepository.findAll(PageRequest.of
 				(0, 5, Sort.by("nome"))));
 		modelAndView.addObject("pessoaobj", new Pessoa());
