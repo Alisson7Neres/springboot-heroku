@@ -178,6 +178,7 @@
 	</form>
 	</div>
 	</fieldset>
+	</div>
 	<fieldset>
 	<legend>Pesquisar Pessoa</legend>
 	<a  href="/listapessoas">
@@ -191,7 +192,7 @@ person_search
 		<div class="input-field col s6">
 			<label for="nomepesquisa" class="active"><b>Pesquisa por nome:</b></label>
 			<input name="nomepesquisa" id="nomepesquisa" class="validate"
-			th:value"${nomepesquisa}">
+			th:value="${nomepesquisa}">
 		</div>
 		
 		<div class="input-filed col s6">
@@ -237,7 +238,7 @@ person_search
 	</fieldset>
 	
 	<div class="row" style="margin-top: 30px;">
-	<center>
+	<div align="center">
 	
 		<span th:if="${pessoas.hasPrevious()}">
 			<a href="@{/pessoaspag(page=${pessoas.number-1}, size = ${pessoas.size}, nomepesquisa=${nomepesquisa})}">Anterior</a>
@@ -250,7 +251,7 @@ person_search
 		<span th:if="${pessoas.hasNext()}">
 			<a href="@{/pessoaspag(page=${pessoas.number+1}, size = ${pessoas.size}, nomepesquisa=${nomepesquisa})}">Próximo</a>
 		</span>
-	</center>
+	</div>
 		</div>
 	
 	 <!-- Adicionando Javascript -->
