@@ -88,23 +88,13 @@
 		   		<div class="input-field col s6">
 		   			<label class="active" for="numero">Número:</label>
 		   			<input type="text" id="numero" name="numero" 
-		   				class="validate" th:field"*{telefones}"/>
+		   				class="validate"/>
 		   		</div>
 		   	
 		   	<div class="input-field col s6">
 		   		<label class="active" for="tipo">Tipo:</label>
 		   		<input id="tipo" type="text" name="tipo" class="validate">
 		   	</div>
-		   	<!--
-		   			<div class="input-field col s6">
-		   		<label for="tipo" class="active">Tipo</label>
-		   			<select class="browser-default" th:field="*{tipo}">
-		   			<option value="" disabled selected>[--SELECIONE--]</option>
-		   				<option value="CELULAR" th:text="Celular"/>
-		   				<option value="TELEFONE" th:text="Telefone"/>
-		   			</select>
-		   		</div>
-			!-->
 
 		   		<input type="submit" value="Adicionar" class="waves-effect waves-light btn">
 		   </div> 
@@ -125,7 +115,6 @@
 				<td th:text="${telefone.id}"/>
 				<td th:text="${telefone.tipo}"/>
 				<td th:text="${telefone.numero}"/>
-				<td><a th:href="@{/editartelefone/{telefoneid}(telefoneid=${telefone.id})}">Editar</a></td>
 				<td><a th:href="@{/removertelefone/{telefoneid}(telefoneid=${telefone.id})}">Remover</a></td>
 			</tr>
 		</table>

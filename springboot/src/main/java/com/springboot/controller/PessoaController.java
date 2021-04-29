@@ -263,19 +263,6 @@ public class PessoaController {
 				
 	}
 	
-	
-	@GetMapping("**/editartelefone/{telefoneid}")
-	public ModelAndView editarTelefone(@PathVariable("telefoneid") Long idpessoa ) {
-		
-		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
-		ModelAndView modelAndView = new ModelAndView("cadastro/telefones");
-		modelAndView.addObject("pessoaobj", pessoa.get());
-		modelAndView.addObject("telefones", telefoneRepository.getTelefones(idpessoa));
-		return modelAndView;
-
-	}
-	
-	
 	@GetMapping("**/removertelefone/{telefoneid}")
 	public ModelAndView deletarTelefone(@PathVariable("telefoneid") Long telefoneid){
 		
