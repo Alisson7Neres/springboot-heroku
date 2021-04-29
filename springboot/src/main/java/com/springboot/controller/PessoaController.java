@@ -35,7 +35,6 @@ import com.springboot.repository.TelefoneRepository;
 import com.springboot.service.ReportUtil;
 
 @Controller
-@RequestMapping("/*")
 public class PessoaController {
 
 	@Autowired
